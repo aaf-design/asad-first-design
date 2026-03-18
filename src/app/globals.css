@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+:root {
+  --background: #020617; /* slate-950 */
+  --foreground: #f8fafc; /* slate-50 */
+  --primary: #6366f1; /* indigo-500 */
+  --secondary: #a855f7; /* purple-500 */
+  --accent: #06b6d4; /* cyan-500 */
+  --card: #0f172a; /* slate-900 */
+  --border: #1e293b; /* slate-800 */
+}
+
+/* Light Mode Base Variables */
+[data-mode="light"] {
+  --background: #f8fafc; /* slate-50 */
+  --foreground: #020617; /* slate-950 */
+  --card: #ffffff;
+  --border: #e2e8f0; /* slate-200 */
+}
+
+/* Theme Definitions */
+[data-theme="emerald"] {
+  --primary: #10b981;
+  --secondary: #06b6d4;
+  --accent: #34d399;
+}
+
+[data-theme="rose"] {
+  --primary: #f43f5e;
+  --secondary: #fb7185;
+  --accent: #fda4af;
+}
+
+[data-theme="amber"] {
+  --primary: #f59e0b;
+  --secondary: #fbbf24;
+  --accent: #fcd34d;
+}
+
+[data-theme="cyan"] {
+  --primary: #06b6d4;
+  --secondary: #22d3ee;
+  --accent: #67e8f9;
+}
+
+[data-theme="indigo"] {
+  --primary: #6366f1;
+  --secondary: #a855f7;
+  --accent: #06b6d4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+/* Animated Background Mesh */
+.bg-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: var(--background);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(var(--primary-rgb), 0.15) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, rgba(var(--secondary-rgb), 0.15) 0, transparent 50%), 
+    radial-gradient(at 100% 100%, rgba(var(--accent-rgb), 0.15) 0, transparent 50%), 
+    radial-gradient(at 0% 100%, rgba(var(--primary-rgb), 0.15) 0, transparent 50%);
+  filter: blur(80px);
+  animation: mesh-move 20s ease infinite alternate;
+  transition: background-color 0.5s ease;
+}
+
+/* Helper to handle opacity in gradients */
+:root {
+  --primary-rgb: 99, 102, 241;
+  --secondary-rgb: 168, 85, 247;
+  --accent-rgb: 6, 182, 212;
+}
+
+[data-theme="emerald"] { --primary-rgb: 16, 185, 129; --secondary-rgb: 6, 182, 212; --accent-rgb: 52, 211, 153; }
+[data-theme="rose"] { --primary-rgb: 244, 63, 94; --secondary-rgb: 251, 113, 133; --accent-rgb: 253, 164, 175; }
+[data-theme="amber"] { --primary-rgb: 245, 158, 11; --secondary-rgb: 251, 191, 36; --accent-rgb: 252, 211, 77; }
+[data-theme="cyan"] { --primary-rgb: 6, 182, 212; --secondary-rgb: 34, 211, 238; --accent-rgb: 103, 232, 249; }
+[data-theme="indigo"] { --primary-rgb: 99, 102, 241; --secondary-rgb: 168, 85, 247; --accent-rgb: 6, 182, 212; }
+
+@keyframes mesh-move {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2) translate(5%, 5%); }
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 5s ease infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Disable selection for protected areas */
+.select-none {
+  user-select: none;
+  -webkit-user-select: none;
+}
